@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('appvila', ['ionic'])
+angular.module('appvila', ['ionic', 'menu.controller', 'posts.controller', 'posts.service', 'menu.service'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -22,3 +22,28 @@ angular.module('appvila', ['ionic'])
     }
   });
 })
+
+
+.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+
+  .state('app', {
+    url: '/app',
+    abstract: true,
+    templateUrl: 'app/menu/menu.html',
+    controller: 'MenuCtrl as menuCtrl'
+  })
+
+  .state('app.posts', {
+    url: "/posts",
+    views: {
+      'menuContent': {
+        templateUrl: "app/posts/posts.html",
+        controller: 'PostsCtrl as postsCtrl'
+      }
+    }
+  });
+
+  $urlRouterProvider.otherwise('/app/posts');
+
+});

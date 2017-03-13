@@ -1,0 +1,19 @@
+<ion-view view-title="Posts">
+	<ion-content>
+        <div ng-repeat="post in postsCtrl.posts" class="list card">
+
+			<div class="item item-avatar">
+				<img ng-src="{{post.author.avatar}}">
+				<h2 class="cor-texto">{{post.author.name}}</h2>
+				<p class="cor-texto">{{post.date}}</p>
+			</div>
+
+			<div class="item item-body">
+				<div>
+					<h2 ng-bind-html="post.title"></h2>
+					<img class="full-image" src="{{post.featured_image}}">
+				</div>
+			</div>			
+		</div>
+	</ion-content>
+</ion-view>

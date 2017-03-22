@@ -13,7 +13,7 @@ return service;
 function getCategories() {
     var def = $q.defer();
 
-    $http.jsonp("http://localhost/appvila/wp-json/wp/v2/categories/?_jsonp=JSON_CALLBACK")
+    $http.jsonp("http://localhost/appvila/wp-json/taxonomies/category/terms/?_jsonp=JSON_CALLBACK")
         .success(function(data) {
             service.categories = data;
             def.resolve(data);

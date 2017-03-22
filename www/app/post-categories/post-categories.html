@@ -1,6 +1,6 @@
-<ion-view view-title="Posts">
+<ion-view view-title="Posts Por Categoria">
 	<ion-content>
-        <div ng-repeat="post in postsCtrl.posts" class="list card">
+        <div ng-repeat="post in categorieCtrl.posts" class="list card">
 
 			<div class="item item-avatar">
 				<img ng-src="{{post.author.avatar}}">
@@ -16,8 +16,8 @@
 			</div>			
 		</div>
 		<ion-infinite-scroll
-    		on-infinite="postsCtrl.getMorePosts()"
-			ng-if="!postsCtrl.noMore"
+    		on-infinite="categorieCtrl.getMorePosts()"
+			ng-if="!categorieCtrl.noMore"
     		distance="4%">
   		</ion-infinite-scroll>
 	</ion-content>

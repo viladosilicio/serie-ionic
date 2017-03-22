@@ -18,7 +18,8 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item ng-repeat="categoria in categorias" menu-close>
+        <ion-item ng-repeat="categoria in menuCtrl.categorias" 
+          menu-close ng-click="menuCtrl.listCategoriesPost('{{categoria.name}}')">
           <p class="menu-categorias">{{categoria.name}}</p>
         </ion-item>
       </ion-list>

@@ -1,7 +1,7 @@
 angular.module('menu.controller', [])
 	.controller('MenuCtrl', MenuCtrl);
 
-function MenuCtrl(menuService){
+function MenuCtrl(menuService, $state){
     var vm = this;
 	
     //usando nosso service para consultar as postagens
@@ -19,4 +19,8 @@ function MenuCtrl(menuService){
     };
 
     vm.getCategories();
+
+    vm.listCategoriesPost = function(name){
+        $state.go('app.postsCategories', {categorieName:name});
+    };
 }

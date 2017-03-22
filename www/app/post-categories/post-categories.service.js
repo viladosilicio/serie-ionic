@@ -1,7 +1,7 @@
-angular.module('posts.service', [])
-    .factory('postsService', postsService);
+angular.module('post-categories.service', [])
+    .factory('postCategoriesService', postCategoriesService);
 
-function postsService($http, $q) {
+function postCategoriesService($http, $q) {
     // interface
     var service = {
         posts: [],
@@ -11,9 +11,9 @@ function postsService($http, $q) {
     return service;
 
     // implementacao
-    function getPosts() {
+    function getPosts(categorie) {
         var def = $q.defer();
-        var url = "http://localhost/appvila/wp-json/posts?filter[posts_per_page]=3&_embed&_jsonp=JSON_CALLBACK";
+        var url = "http://localhost/appvila/wp-json/posts?filter[posts_per_page]=3&filter[category_name]="+categorie+"&_embed&_jsonp=JSON_CALLBACK";
 
         $http.jsonp(url)
             .success(function (data) {
@@ -26,10 +26,10 @@ function postsService($http, $q) {
         return def.promise;
     }
 
-    function getPostsPerPage(pagina) {
+    function getPostsPerPage(pagina, categorie) {
         var def = $q.defer();
 
-        $http.jsonp("http://localhost/appvila/wp-json/posts?filter[posts_per_page]=3&page=" + pagina + "&_embed&_jsonp=JSON_CALLBACK")
+        $http.jsonp("http://localhost/appvila/wp-json/posts?filter[posts_per_page]=3&filter[category_name]="+categorie+"&page="+pagina+"&_embed&_jsonp=JSON_CALLBACK")
             .success(function (data) {
                     service.posts = data;
                     def.resolve(data);

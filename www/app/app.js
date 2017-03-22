@@ -3,7 +3,8 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('appvila', ['ionic', 'menu.controller', 'posts.controller', 'posts.service', 'menu.service'])
+angular.module('appvila', ['ionic', 'menu.controller', 'posts.controller', 'posts.service', 'menu.service'
+  , 'post-categories.controller', 'post-categories.service'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -32,6 +33,16 @@ angular.module('appvila', ['ionic', 'menu.controller', 'posts.controller', 'post
     abstract: true,
     templateUrl: 'app/menu/menu.html',
     controller: 'MenuCtrl as menuCtrl'
+  })
+
+  .state('app.postsCategories', {
+    url: "/posts/:categorieName",
+    views: {
+      'menuContent': {
+        templateUrl: "app/post-categories/post-categories.html",
+        controller: 'PostCategoriesCtrl as categorieCtrl'
+      }
+    }
   })
 
   .state('app.posts', {

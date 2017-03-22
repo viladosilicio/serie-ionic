@@ -1,14 +1,14 @@
-angular.module('posts.controller', [])
-    .controller('PostsCtrl', PostsCtrl);
+angular.module('post-categories.controller', [])
+    .controller('PostCategoriesCtrl', PostCategoriesCtrl);
 
-function PostsCtrl(postsService, $ionicLoading, $scope) {
+function PostCategoriesCtrl(postCategoriesService, $ionicLoading, $scope, $stateParams) {
     var vm = this;
     vm.noMore = false;
     //usando nosso service para consultar as postagens
-
+    console.log($stateParams.categorieName);
     vm.posts = [];
     vm.getPosts = function () {
-        postsService.getPosts()
+        postCategoriesService.getPosts($stateParams.categorieName)
             .then(
             function (data) {
                 for (var i = 0; i < data.length; i++) {
@@ -26,7 +26,7 @@ function PostsCtrl(postsService, $ionicLoading, $scope) {
     vm.getPosts();
 
     vm.getMorePosts = function () {
-        postsService.getPostsPerPage(vm.paginaAtual)
+        postCategoriesService.getPostsPerPage(vm.paginaAtual, $stateParams.categorieName)
             .then(
             function (data) {
                 if (data) {
